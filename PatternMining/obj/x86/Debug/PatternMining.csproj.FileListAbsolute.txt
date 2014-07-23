@@ -1,0 +1,5 @@
+C:\scratch\PatternMining\PatternMining\bin\Debug\PatternMining.exe
+C:\scratch\PatternMining\PatternMining\bin\Debug\PatternMining.pdb
+C:\scratch\PatternMining\PatternMining\obj\x86\Debug\PatternMining.exe
+C:\scratch\PatternMining\PatternMining\obj\x86\Debug\PatternMining.pdb
+C:\scratch\PatternMining\PatternMining\obj\x86\Debug\PatternMining.csprojResolveAssemblyReference.cache
