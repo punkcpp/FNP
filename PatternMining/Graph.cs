@@ -8,80 +8,118 @@ namespace PatternMining
 {
     class Graph
     {
-        int n; //num of nodes
-        int m; //num of edges
-
-        List<GraphNode> nodeSet; // adjcant list of graph
-
         public Graph() 
         { 
             n = 0; 
             m = 0;
-            nodeSet = new List<GraphNode>();
+            adj = new List<List<int>>();
+            labels = new List<string>();
+            deg = new List<int>();     
         }
-        void buildGraph(string fileConf, string file1, string file2)
-        {
-            /*
-             * file1: paper-author 
-             * file2: paper-conf
-             */
-            // read conference file, id-confName
-            Dictionary<string, string> conference = new Dictionary<string, string>();
-            string[] confs = System.IO.File.ReadAllLines(fileConf);
-            foreach(string conf in confs)
-            {
-                string[] c = conf.Split();
-                conference.Add(c[0],c[1]);
-            }
-            //
 
-            // add node to NodeSet
-            string[] lines = System.IO.File.ReadAllLines(file1);
-       
+        public void buildGraph(string file)
+        {
+            string[] lines = File.ReadAllLines(file);
+            int idCnt = 0;
+            int edgeCnt = 0;
+            Dictionary<string, int> idMap = new Dictionary<string, int>();
+            Console.WriteLine("start building graph");
             foreach (string line in lines)
             {
+                edgeCnt++;
                 string[] tokens = line.Split();
-                int paperID = Convert.ToInt32(tokens[0]);
-                int authorID = Convert.ToInt32(tokens[1]);
-                GraphNode graphNode_paper = new GraphNode(paperID,"paper");
-                GraphNode graphNode_author = new GraphNode(authorID, "author");
-                graphNode_paper.addNeighbor(graphNode_author);
-                graphNode_author.addNeighbor(graphNode_paper); //Case: if there are multiple lines the same, will redundant
-                graphNode_paper.addDeg();
-                graphNode_author.addDeg();
+                // ID, Label, ID, Label
+                int id1, id2;
+                bool hasShow1 = false;
+                bool hasShow2 = false;
+                if (idMap.ContainsKey(tokens[0]))
+                {
+                    id1 = idMap[tokens[0]];
+                    hasShow1 = true;
+                }
+                else
+                {
+                    id1 = idCnt++;
+                    labels.Add(tokens[1]);
+                    idMap.Add(tokens[0], id1);
+                }
+               
+                if (idMap.ContainsKey(tokens[2]))
+                {
+                    id2 = idMap[tokens[2]];
+                    hasShow2 = true;
+                }
+                else
+                {
+                    id2 = idCnt++;
+                    idMap.Add(tokens[2], id2);
+                    try
+                    {
+                        labels.Add(tokens[3]);
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        Console.WriteLine(line);
+                        Console.WriteLine(e.StackTrace);
+                        
+                    }
+                }
+                if (hasShow1)
+                {
+                    adj[id1].Add(id2);
+                    deg[id1]++;
+                }
+                else
+                {
+                    List<int> tmp = new List<int>();
+                    tmp.Add(id2);
+                    adj.Add(tmp);
+                    deg.Add(1);
+                }
+                if (hasShow2)
+                {
+                    adj[id2].Add(id1);
+                    deg[id2]++;
+                }
+                else
+                {
+                    List<int> tmp = new List<int>();
+                    tmp.Add(id1);
+                    adj.Add(tmp);
+                    deg.Add(1);
+                }
             }
             
-            lines = System.IO.File.ReadAllLines(file2);
-            foreach (string line in lines)
+            n = idCnt;
+            m = edgeCnt;
+        }
+        public void pritGraph()
+        {
+            //string test = Console.ReadLine();
+            int cnt = adj.Count;
+           // Console.WriteLine("count: " + cnt + " nodes: " + n + " edges: " + m);
+            for(int i = 0; i < adj.Count; i++)
             {
-                string[] tokens = line.Split();
-                int paperID = Convert.ToInt32(tokens[0]);
-                int authorID = Convert.ToInt32(tokens[1]);
-                GraphNode graphNode_paper = new GraphNode(paperID, "paper");
-                GraphNode graphNode_conf = new GraphNode(authorID, conference[tokens[1]]); //check same node, maintain a node dictionary
-                graphNode_paper.addNeighbor(graphNode_conf);
-                graphNode_conf.addNeighbor(graphNode_paper); //Case: if there are multiple lines the same, will redundant
-                graphNode_paper.addDeg();
-                graphNode_conf.addDeg();
-
+                //Console.ReadLine();
+                string outline = i + " ";
+                foreach(int node in adj[i])
+                {
+                    outline += (node + " ");
+                }
+                Console.WriteLine(outline);
             }
         }
-        public void addNode()
+
+
+        private List<List<int>> adj;
+        private List<string> labels;
+        private List<int> deg;
+
+        public int getDeg(int nodeID)
         {
-            n++;
+            return deg[nodeID];
         }
-        public void addEdge()
-        {
-            m++;
-        }
-        public int getNumOfNodes()
-        {
-            return n;
-        }
-        public int getNumOfEdges()
-        {
-            return m;
-        }
-       
+        public int n { set; get;}
+        public int m { set; get; }
     }
 }

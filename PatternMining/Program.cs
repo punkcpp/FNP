@@ -10,8 +10,10 @@ namespace PatternMining
         static void Main(string[] args)
         {
             Console.WriteLine("test");
-            Graph grapg = new Graph();
-
+            Graph graph = new Graph();
+            string input = @"C:\scratch\github\data\dblp_small.txt";
+            graph.buildGraph(input);
+            graph.pritGraph();
         }
     }
 }

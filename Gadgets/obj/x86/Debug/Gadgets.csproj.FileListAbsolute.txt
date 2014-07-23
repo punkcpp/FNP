@@ -1,0 +1,4 @@
+C:\scratch\github\Frequent-Neighborhood-Pattern-Mining\Gadgets\bin\Debug\Gadgets.exe
+C:\scratch\github\Frequent-Neighborhood-Pattern-Mining\Gadgets\bin\Debug\Gadgets.pdb
+C:\scratch\github\Frequent-Neighborhood-Pattern-Mining\Gadgets\obj\x86\Debug\Gadgets.exe
+C:\scratch\github\Frequent-Neighborhood-Pattern-Mining\Gadgets\obj\x86\Debug\Gadgets.pdb
