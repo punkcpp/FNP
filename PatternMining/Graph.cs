@@ -93,7 +93,7 @@ namespace PatternMining
             n = idCnt;
             m = edgeCnt;
         }
-        public void pritGraph()
+        public void printGraph()
         {
             int cnt = adj.Count;
             Console.WriteLine("count: " + cnt + " nodes: " + n + " edges: " + m);

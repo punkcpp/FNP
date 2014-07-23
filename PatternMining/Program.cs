@@ -9,13 +9,10 @@ namespace PatternMining
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
-            Graph graph = new Graph();
             string input = @"C:\scratch\github\data\dblp.txt";
+            Graph graph = new Graph();
             graph.buildGraph(input);
-            graph.pritGraph();
-            int testDeg = graph.getDeg(10);
-            Console.WriteLine(testDeg);
+            graph.printGraph();
         }
     }
 }
