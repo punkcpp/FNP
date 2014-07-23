@@ -95,9 +95,9 @@ namespace PatternMining
         }
         public void pritGraph()
         {
-            //string test = Console.ReadLine();
             int cnt = adj.Count;
-           // Console.WriteLine("count: " + cnt + " nodes: " + n + " edges: " + m);
+            Console.WriteLine("count: " + cnt + " nodes: " + n + " edges: " + m);
+            string test = Console.ReadLine();
             for(int i = 0; i < adj.Count; i++)
             {
                 //Console.ReadLine();

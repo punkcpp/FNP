@@ -11,9 +11,11 @@ namespace PatternMining
         {
             Console.WriteLine("test");
             Graph graph = new Graph();
-            string input = @"C:\scratch\github\data\dblp_small.txt";
+            string input = @"C:\scratch\github\data\dblp.txt";
             graph.buildGraph(input);
             graph.pritGraph();
+            int testDeg = graph.getDeg(10);
+            Console.WriteLine(testDeg);
         }
     }
 }
