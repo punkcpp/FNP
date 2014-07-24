@@ -43,7 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildingBlock.cs" />
+    <Compile Include="GlobalVar.cs" />
     <Compile Include="Graph.cs" />
+    <Compile Include="Path.cs" />
+    <Compile Include="PathPattern.cs" />
+    <Compile Include="PathSet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

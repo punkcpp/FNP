@@ -110,14 +110,17 @@ namespace PatternMining
             }
         }
 
-
-        private List<List<int>> adj;
+        public List<List<int>> adj;
         private List<string> labels;
         private List<int> deg;
 
         public int getDeg(int nodeID)
         {
             return deg[nodeID];
+        }
+        public string getLabel(int nodeID)
+        {
+            return labels[nodeID];
         }
         public int n { set; get;}
         public int m { set; get; }

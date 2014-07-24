@@ -9,10 +9,18 @@ namespace PatternMining
     {
         static void Main(string[] args)
         {
-            string input = @"C:\scratch\github\data\dblp.txt";
+            /*
+             * set global parameters
+             */
+            GlobalVar.minSup = 5;
+            GlobalVar.radius = 3;
+            GlobalVar.inputFilePath = @"C:\scratch\github\data\dblp.txt";
+    
             Graph graph = new Graph();
-            graph.buildGraph(input);
+            graph.buildGraph(GlobalVar.inputFilePath);
             graph.printGraph();
+            BuildingBlock bb = new BuildingBlock();
+            List<PathPattern> buildingBlocks = bb.createBuildingBlocks(graph);
         }
     }
 }
