@@ -14,6 +14,10 @@ namespace PatternMining
             labelSeq.Add(label);
             patternSize++;
         }
+        public List<string> getPathPattern()
+        {
+            return labelSeq;
+        }
 
         private List<string> labelSeq;
         private int patternSize;

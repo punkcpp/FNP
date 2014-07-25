@@ -122,7 +122,24 @@ namespace PatternMining
         {
             return labels[nodeID];
         }
-        public int n { set; get;}
+        public int n { set; get; }
         public int m { set; get; }
+        public int pivot { set; get; }
+
+        internal void buildGraph(List<string> labelSeq) //build graph from a path, i.e. a-p-a
+        {
+            int nodeCnt = labelSeq.Count;
+            int edgeCnt = labelSeq.Count - 1;
+            for (int i = 0; i < labelSeq.Count; i++)
+            {
+                List<int> tmp = new List<int>();
+                tmp.Add(i);
+                labels[i] = labelSeq[i];
+                if (i - 1 >= 0) tmp.Add(i - 1);
+                if (i + 1 < labelSeq.Count) tmp.Add(i + 1);
+                adj.Add(tmp);
+            }
+            
+        }
     }
 }

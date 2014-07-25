@@ -8,6 +8,18 @@ namespace PatternMining
     class BuildingBlock
     {
         public BuildingBlock() { }
+        public List<Graph> getBuildingBlockGraph(List<PathPattern> bb)
+        {
+            List<Graph> bbGraphs = new List<Graph>();
+            foreach (PathPattern pp in bb)
+            {
+                Graph bbGraph = new Graph();
+                bbGraph.buildGraph(pp.getPathPattern());
+                bbGraphs.Add(bbGraph);
+            }
+            return bbGraphs;
+        }
+
         public List<PathPattern> createBuildingBlocks(Graph graph)
         {
             List<PathPattern> buildingBlocks = new List<PathPattern>();
