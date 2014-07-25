@@ -95,7 +95,7 @@ namespace PatternMining
                         int type = subPatternType(subPattern);
                         if (type == 0)
                         {
-                            //todo
+                            //todo  
                         }
                         else if (type == 1)
                         {
