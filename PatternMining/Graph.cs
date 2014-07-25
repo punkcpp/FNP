@@ -14,7 +14,8 @@ namespace PatternMining
             m = 0;
             adj = new List<List<int>>();
             labels = new List<string>();
-            deg = new List<int>();     
+            deg = new List<int>();
+            pivot = 0;
         }
 
         public void buildGraph(string file)
@@ -109,11 +110,39 @@ namespace PatternMining
                 Console.WriteLine(outline);
             }
         }
+        public Graph removeEdge(int from, int to) // return a new graph after removing an edge
+        {
+           Graph g = new Graph();
+
+           g.n = this.n;
+           g.m = this.m - 1;
+           g.pivot = (this.pivot);
+
+           for (int u = 0; u < this.n; ++u)
+           {
+               g.labels.Add(this.labels[u]);
+               if (u == from || u == to)
+                   g.deg.Add(this.getDeg(u) - 1);
+               else
+                   g.deg.Add(this.getDeg(u));
+               for (int i = 0; i < this.adj[u].Count; ++i)
+               {
+                   int v = this.adj[u][i];
+                   if (!(u == from && v == to) && !(u == to && v == from))
+                       g.adj[u].Add(v);
+               }
+           }
+
+           return g;
+        }
 
         public List<List<int>> adj;
-        private List<string> labels;
-        private List<int> deg;
-
+        public List<string> labels;
+        public List<int> deg;
+        public int n { set; get; }
+        public int m { set; get; }
+        public int pivot { set; get; }
+       
         public int getDeg(int nodeID)
         {
             return deg[nodeID];
@@ -122,10 +151,7 @@ namespace PatternMining
         {
             return labels[nodeID];
         }
-        public int n { set; get; }
-        public int m { set; get; }
-        public int pivot { set; get; }
-
+      
         internal void buildGraph(List<string> labelSeq) //build graph from a path, i.e. a-p-a
         {
             int nodeCnt = labelSeq.Count;
