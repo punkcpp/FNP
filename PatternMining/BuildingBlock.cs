@@ -8,8 +8,9 @@ namespace PatternMining
     class BuildingBlock
     {
         public BuildingBlock() { }
-        public List<Graph> getBuildingBlockGraph(List<PathPattern> bb)
+        public List<Graph> getBuildingBlockGraph(Graph graph)
         {
+            List<PathPattern> bb = createBuildingBlocks(graph);
             List<Graph> bbGraphs = new List<Graph>();
             foreach (PathPattern pp in bb)
             {
@@ -20,7 +21,7 @@ namespace PatternMining
             return bbGraphs;
         }
 
-        public List<PathPattern> createBuildingBlocks(Graph graph)
+        private List<PathPattern> createBuildingBlocks(Graph graph)
         {
             List<PathPattern> buildingBlocks = new List<PathPattern>();
             Dictionary<int,int> dict = new Dictionary<int,int>();

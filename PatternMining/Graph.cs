@@ -138,8 +138,12 @@ namespace PatternMining
                 if (i - 1 >= 0) tmp.Add(i - 1);
                 if (i + 1 < labelSeq.Count) tmp.Add(i + 1);
                 adj.Add(tmp);
+                if (i > 0 && i < labelSeq.Count - 1) deg.Add(2);
+                else deg.Add(1);
             }
-            
+            this.n = nodeCnt;
+            this.m = edgeCnt;
+            this.pivot = 0;
         }
     }
 }

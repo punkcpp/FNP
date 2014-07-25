@@ -20,7 +20,7 @@ namespace PatternMining
             graph.buildGraph(GlobalVar.inputFilePath);
             graph.printGraph();
             BuildingBlock bb = new BuildingBlock();
-            List<PathPattern> buildingBlocks = bb.createBuildingBlocks(graph);
+            List<Graph> bbGraphs = bb.getBuildingBlockGraph(graph);
         }
     }
 }
