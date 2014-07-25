@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PatternMining
 {
-    class PatternPairOperation
+    class PatternPairOperation //123
     {
         public Graph Pattern1;
         public Graph Pattern2;
